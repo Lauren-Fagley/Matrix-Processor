@@ -1,10 +1,10 @@
-#Matrix Processor with Optional Multiprocessing
-#Overview
+# Matrix Processor with Optional Multiprocessing
+# Overview
 
 This Python program processes a matrix from an input file and writes a transformed version to an output file. It includes an optional multiprocessing mode to enhance performance on large matrices.
 
 The core logic transforms each cell in the matrix based on the values of its neighbors using a custom rule set. In multiprocessing mode, the matrix is divided into overlapping chunks so that each process has the necessary context (neighboring cells) to apply the transformation accurately.
-#Features
+# Features
 
     Reads a matrix from an input file.
 
@@ -16,14 +16,14 @@ The core logic transforms each cell in the matrix based on the values of its nei
 
     Writes the final matrix to an output file.
 
-#How It Works
-#Serial Mode
+# How It Works
+Serial Mode
 
     Processes the entire matrix in a single process.
 
     Applies neighbor-based transformation rules for 100 iterations.
 
-#Multiprocessing Mode
+Multiprocessing Mode
 
     Splits the matrix into core chunks to be modified.
 
@@ -35,7 +35,7 @@ The core logic transforms each cell in the matrix based on the values of its nei
 
     Final matrix is reconstructed by merging the results from all processes after each iteration.
 
-#Transformation Rules
+# Transformation Rules
 
 Each cell is transformed based on the sum of its 8 neighbors, where neighbors contribute values based on their symbols:
 Symbol	Value Contribution
@@ -51,7 +51,7 @@ Based on the sum, each symbol has custom rules for transformation, for example:
 
     . turns into o or x if the sum is in specific prime numbers or their negative counterparts.
 
-#Usage
+# Usage
 
 python3 main.py -i input.txt -o output.txt [-p num_processes]
 
@@ -63,7 +63,7 @@ Arguments
 
     -p: Optional. Number of parallel processes to use. If omitted or set to 1, serial mode is used.
 
-#Input Format
+# Input Format
 
 The input file should contain a matrix where each line represents a row of characters like:
 
@@ -71,7 +71,7 @@ The input file should contain a matrix where each line represents a row of chara
 xO..o
 .OXx.
 
-#Output Format
+# Output Format
 
 The output is a matrix in the same format, written to the specified file.
 Requirements
@@ -80,14 +80,24 @@ Requirements
 
     No external libraries required.
 
-#Performance Notes
+# Performance Notes
 
-    Multiprocessing is most beneficial for large matrices.
+    Python is not the best language for tasks like lexical analysis and parsing. Some key points:
 
-    Overhead from process management may outweigh the benefit on smaller datasets.
+        Python is interpreted, not compiled, which leads to slower execution times compared to compiled languages like C or C++.
+    
+        Python does not optimize memory or performance automatically, meaning it doesn’t catch or fix inefficient logic the way a compiled language with strict type enforcement might.
+    
+        In comparison, a C implementation would likely:
+    
+            Run significantly faster,
+    
+            Use less memory,
+    
+            Provide more control over execution behavior.
 
-    Neighbor calculation and chunk expansion are optimized to minimize redundant computation.
+    This implementation is intended for educational or prototyping purposes. For production-level tools or high-efficiency needs, a compiled language is recommended.
 
-#Author
+# Author
 
-Lauren
+Lauren Fagley
